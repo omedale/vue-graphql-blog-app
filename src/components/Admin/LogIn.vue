@@ -59,8 +59,10 @@ export default {
           }
         })
         .then(response => {
-          localStorage.setItem("blog-app-token", response.data.login);
-
+          const data = JSON.parse(response.data.login);
+          localStorage.setItem("blog-app-token", data.login);
+          this.$store.dispatch('setToken', response.data.login)
+          this.$store.dispatch('setUser', data.user)
           this.$router.replace("/admin/posts");
         });
     }
