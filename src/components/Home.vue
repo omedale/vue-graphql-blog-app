@@ -14,7 +14,7 @@
                 </h3>
             </div>
         </div>
-        <a class="button fab-btn"><i class="fa fa-plus"></i></a>
+        <router-link v-if="$store.state.isUserLoggedIn" class="button fab-btn" :to="{name: 'AddPost'}"><i class="fa fa-plus"></i></router-link>
     </section>
 </template>
 

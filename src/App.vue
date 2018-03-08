@@ -16,22 +16,29 @@
             <div class="navbar-end">
                     <div class="navbar-item">
                       <div class="field is-grouped">
-                        <p class="control">
+                        <p
+                         v-if="!$store.state.isUserLoggedIn"
+                         class="control">
                           <router-link  class="bd-tw-button button" to="login">
                             <span>
                               Login
                             </span>
                           </router-link >
                         </p>
-                        <p class="control">
+                        <p
+                         v-if="!$store.state.isUserLoggedIn"
+                         class="control">
                           <router-link  class="bd-tw-button button" to="signup">
                             <span>
                               Register
                             </span>
                           </router-link >
                         </p>
-                        <p class="control">
-                          <router-link  class="bd-tw-button button" to="signup">
+                        <p
+                         @click="logout"
+                         v-if="$store.state.isUserLoggedIn"
+                         class="control">
+                          <router-link class="bd-tw-button button" to="signup">
                             <span>
                               Logout
                             </span>
@@ -48,7 +55,17 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  methods: {
+     logout () {
+      console.log('heloooo');
+      this.$store.dispatch('setToken', null)
+      // this.$store.dispatch('setUser', null)
+      this.$router.push({
+        name: 'root'
+      })
+    }
+  }
 }
 </script>
 
